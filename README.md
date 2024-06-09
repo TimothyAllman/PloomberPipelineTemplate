@@ -1,10 +1,10 @@
 <!-- start header -->
-PloomberPieplineTemplate
+# PloomberPieplineTemplate
 <!-- end header -->
 
 
 
-# PloomberPieplineTemplate
+
 
 ## Description
 
@@ -24,7 +24,7 @@ pip install --editable .
 or 
 
 ```
-open the InstallMe.ipynb notebook in VsCode and click Run All to execute all cells install all dependencies
+open the InstallMe.ipynb notebook in VsCode and click Run All to execute all cells and install all dependencies
 ```
 
 
