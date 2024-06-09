@@ -1,0 +1,30 @@
+meta:
+  import_tasks_from: list.of.common.tasks.yaml
+
+tasks:
+  # tasks to get/fetch data from some central source
+  - source: tasks/taskGraphTable.py
+    product:
+        nb: reports/{{MY_FOLDER}}/notebooks/taskGraphTable.ipynb
+
+  - source: tasks/taskGraphLine.py
+    product:
+        nb: reports/{{MY_FOLDER}}/notebooks/taskGraphLine.ipynb
+
+
+  # tasks to do calcs/transform data 
+  - source: tasks/taskReportMyThingInitiate.py
+    product:
+        nb: reports/{{MY_FOLDER}}/notebooks/task1GetData.ipynb
+        INDEX_OF_LINE_GRAPH_PAGE: reports/{{MY_FOLDER}}/sharedVariables/INDEX_OF_LINE_GRAPH_PAGE.pkl
+        INDEX_OF_TABLE_GRAPH_PAGE: reports/{{MY_FOLDER}}/sharedVariables/INDEX_OF_TABLE_GRAPH_PAGE.pkl
+
+  - source: tasks/taskReportMyThingAddLineGraphPage.py
+    product:
+        nb: reports/{{MY_FOLDER}}/notebooks/task1GetData.ipynb
+      
+  - source: tasks/taskReportMyThingAddTablePage.py
+    product:
+        nb: reports/{{MY_FOLDER}}/notebooks/task1GetData.ipynb
+       
+
