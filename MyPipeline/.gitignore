@@ -17,6 +17,9 @@ products/
 # exclude everything in thhe reports folder
 reports/
 
+# exclude all other metadata used by ploomber
+*.metadata
+
 # exclude all notebook metadata used by ploomber
 *.ipynb.metadata
 
