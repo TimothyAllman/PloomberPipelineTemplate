@@ -1,0 +1,78 @@
+meta:
+  import_tasks_from: list.of.common.tasks.yaml
+
+tasks:
+  # tasks to get/fetch data from some central source
+  - source: tasks/taskGetData1.py
+    product:
+        nb: products/{{MY_FOLDER}}/notebooks/taskGetData1.ipynb
+        MY_VAR1: products/{{MY_FOLDER}}/sharedVariables/MY_VAR1.pkl
+
+  - source: tasks/taskGetData2.py
+    product:
+        nb: products/{{MY_FOLDER}}/notebooks/taskGetData2.ipynb
+        MY_VAR2: products/{{MY_FOLDER}}/sharedVariables/MY_VAR2.pkl
+
+
+  # tasks to do calcs/transform data 
+  - source: tasks/taskDoCalc1.py
+    product:
+        nb: products/{{MY_FOLDER}}/notebooks/taskDoCalc1.ipynb
+        MY_VAR3: products/{{MY_FOLDER}}/sharedVariables/MY_VAR3.pkl
+
+  - source: tasks/taskDoCalc2.py
+    product:
+        nb: products/{{MY_FOLDER}}/notebooks/taskDoCalc2.ipynb
+        MY_VAR4: products/{{MY_FOLDER}}/sharedVariables/MY_VAR4.pkl
+
+
+  # tasks to generate documentation on every pipeline run 
+  # useful for creating how-to's and FAQ pdf's that can used when getting someone familiar with the pipeline
+  # especially important when project/pipeline is being handed over from one person to another
+  - source: tasks/DocumentationPdfOfFaq.py
+    # use the webpdf exporter, because it supports embedded charts
+    
+    nb_product_key: [nb_ipynb, nb_pdf, nb_html]
+    # when nb_product_key is a list, nbconvert_exporter_name should be a dict with required keys from nb_product_key only
+    # If missing it uses the default exporter
+    nbconvert_exporter_name:
+      nb_pdf: webpdf
+
+    # optional config to hide the code in the output
+    nbconvert_export_kwargs:
+      exclude_input: True # get rid of the input code cells
+      exclude_input_prompt: True # get rid of the e.g. `Input ln[9]` on the left hand side of a notebook when it is exported
+      exclude_output_prompt: True # get rid of the e.g. `Output ln[10]` on the left hand side of a notebook when it is exported
+    
+    product:
+        nb_ipynb: products/{{MY_FOLDER}}/documents/DocumentationPdfOfFaq.ipynb
+        nb_pdf: products/{{MY_FOLDER}}/documents/DocumentationPdfOfFaq.pdf
+        nb_html: products/{{MY_FOLDER}}/documents/DocumentationPdfOfFaq.html
+
+
+
+
+  - source: tasks/DocumentationPdfOfStepByStepGuide.py
+    # use the webpdf exporter, because it supports embedded charts
+    
+    nb_product_key: [nb_ipynb, nb_pdf, nb_html]
+    # when nb_product_key is a list, nbconvert_exporter_name should be a dict with required keys from nb_product_key only
+    # If missing it uses the default exporter
+    nbconvert_exporter_name:
+      nb_pdf: webpdf
+
+    # optional config to hide the code in the output
+    nbconvert_export_kwargs:
+      exclude_input: True # get rid of the input code cells
+      exclude_input_prompt: True # get rid of the e.g. `Input ln[9]` on the left hand side of a notebook when it is exported
+      exclude_output_prompt: True # get rid of the e.g. `Output ln[10]` on the left hand side of a notebook when it is exported
+    
+    product:
+        nb_ipynb: products/{{MY_FOLDER}}/documents/DocumentationPdfOfStepByStepGuide.ipynb
+        nb_pdf: products/{{MY_FOLDER}}/documents/DocumentationPdfOfStepByStepGuide.pdf
+        nb_html: products/{{MY_FOLDER}}/documents/DocumentationPdfOfStepByStepGuide.html
+
+
+
+
+
