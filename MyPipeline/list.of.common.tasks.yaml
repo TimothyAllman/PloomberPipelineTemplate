@@ -1,0 +1,53 @@
+# tasks to define common functions used in more than one task mostly used fro creating textboxes etc in reports
+- source: tasks/CommonFunctions.py
+  product:
+      nb: products/{{MY_FOLDER}}/notebooks/CommonFunctions.ipynb
+      FUNC_1: products/{{MY_FOLDER}}/sharedVariables/FUNC_1.pkl
+      FUNC_2: products/{{MY_FOLDER}}/sharedVariables/FUNC_2.pkl
+
+
+
+
+
+
+
+# task used to take in env.yaml params and transform them into python variables
+- source: tasks/ConstantsFromEnvFileParams.py
+  papermill_params:
+    log_output: True
+  params:
+    ENV_THING_1: "{{ENV_THING_1}}"
+    ENV_THING_2: "{{ENV_THING_2}}"
+  product:
+      nb: products/{{MY_FOLDER}}/notebooks/ConstantsFromEnvFileParams.ipynb
+      MY_THING_1: products/{{MY_FOLDER}}/sharedVariables/MY_THING_1.pkl
+      MY_THING_2: products/{{MY_FOLDER}}/sharedVariables/MY_THING_2.pkl
+
+
+
+
+
+
+
+# task used to create file paths for png, etc
+- source: tasks/ConstantsFromFilePaths.py
+  product:
+      nb: products/{{MY_FOLDER}}/notebooks/ConstantsFromFilePaths.ipynb
+
+      # hardcoded/defined paths for top level folders
+      HARD_CODED_PATH_TO_REPORTS_FOLDER: reports/
+
+      # file paths we "create"  inside the tasks using the above top level folders  and which will be used in other tasks
+      ABSOLUTE_PATH_TO_GRAPH_1_PLOTLY_PNG: products/{{MY_FOLDER}}/sharedVariables/ABSOLUTE_PATH_TO_GRAPH_1_PLOTLY_PNG.pkl
+      ABSOLUTE_PATH_TO_DATA_1_XLSX: products/{{MY_FOLDER}}/sharedVariables/ABSOLUTE_PATH_TO_DATA_1_XLSX.pkl
+
+
+
+
+
+# task used to create constants 
+- source: tasks/Constants.py
+  product:
+      nb: products/{{MY_FOLDER}}/notebooks/Constants.ipynb
+      CONSTANT_ONE: products/{{MY_FOLDER}}/sharedVariables/CONSTANT_ONE.pkl
+      CONSTANT_TWO: products/{{MY_FOLDER}}/sharedVariables/CONSTANT_TWO.pkl
