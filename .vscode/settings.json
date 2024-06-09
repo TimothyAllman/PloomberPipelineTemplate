@@ -4,5 +4,9 @@
   },
   "black-formatter.args": [
     "--line-length","10000"
-  ]
+  ],
+  "notebook.output.scrolling": true,
+  "notebook.output.textLineLimit": 30,
+  "notebook.diff.ignoreOutputs": false,
+
 }
