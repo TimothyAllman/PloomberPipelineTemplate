@@ -1,0 +1,10 @@
+0.0.1
+June 9 2024
+- Add default/results pipeline.yaml
+- Add reorts pipeline.yaml
+- Add placeholder/tamplate tasks.py files
+- Add changelog
+- Add gitignore file
+- Add Readme
+- Add RunMe.ipynb notebook 
+- Add InstallMe.ipynb notebook 
