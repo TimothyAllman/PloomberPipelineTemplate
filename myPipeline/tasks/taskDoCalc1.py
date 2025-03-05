@@ -29,3 +29,9 @@ product = None
 
 # %%
 # your code here...
+
+import ploomberpipelinetemplate as ppp
+
+
+# %%
+ppp.
