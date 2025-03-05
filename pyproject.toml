@@ -26,6 +26,9 @@ dependencies = [
 
     #for powerpoint/report creation
     "python-pptx",
+
+    #for nice tables
+    "great-tables",
 ]
 
 
