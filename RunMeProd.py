@@ -1,5 +1,5 @@
-import ploomberpipelinetemplate.PipelineModule
+import ploomberpipelinetemplate.PipelineFunctionsModule
 
-dag = ploomberpipelinetemplate.PipelineModule.CreatePipeline()
+dag = ploomberpipelinetemplate.PipelineFunctionsModule.CreatePipeline()
 
 dag.build()
