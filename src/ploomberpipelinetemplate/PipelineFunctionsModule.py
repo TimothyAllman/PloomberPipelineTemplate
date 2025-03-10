@@ -79,6 +79,16 @@ def CreatePipeline(clean_up=True):
         papermill_params={"nest_asyncio": True},
     )
 
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    # documentation tasks
     taskDocumentationPdfOfFaq = NotebookRunner(
         source=loader["DocumentationPdfOfFaq.py"],
         product={
@@ -103,6 +113,16 @@ def CreatePipeline(clean_up=True):
         papermill_params={"nest_asyncio": True},
     )
 
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    # ingestation/fetch raw data tasks
     taskIngestData1 = NotebookRunner(
         source=loader["IngestData1.py"],
         product={
@@ -127,4 +147,140 @@ def CreatePipeline(clean_up=True):
         papermill_params={"nest_asyncio": True},
     )
 
-    return myPipelineDag
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    # transformation/process tasks
+    taskProcessToDoCalc1 = NotebookRunner(
+        source=loader["ProcessToDoCalc1.py"],
+        product={
+            "nb": File(out / "ProcessToDoCalc1.ipynb"),
+            # "data": File(out / "clean.csv"),
+        },
+        dag=myPipelineDag,
+        kernelspec_name="python3",
+        static_analysis="disable",
+        papermill_params={"nest_asyncio": True},
+    )
+
+    taskProcessToDoCalc2 = NotebookRunner(
+        source=loader["ProcessToDoCalc2.py"],
+        product={
+            "nb": File(out / "ProcessToDoCalc2.ipynb"),
+            # "data": File(out / "clean.csv"),
+        },
+        dag=myPipelineDag,
+        kernelspec_name="python3",
+        static_analysis="disable",
+        papermill_params={"nest_asyncio": True},
+    )
+
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    # tasks to create graphs/tables
+    taskQuantifyAndSaveLineGraph = NotebookRunner(
+        source=loader["QuantifyAndSaveLineGraph.py"],
+        product={
+            "nb": File(out / "QuantifyAndSaveLineGraph.ipynb"),
+            # "data": File(out / "clean.csv"),
+        },
+        dag=myPipelineDag,
+        kernelspec_name="python3",
+        static_analysis="disable",
+        papermill_params={"nest_asyncio": True},
+    )
+
+    taskQuantifyAndSaveMyTable1 = NotebookRunner(
+        source=loader["QuantifyAndSaveMyTable1.py"],
+        product={
+            "nb": File(out / "QuantifyAndSaveMyTable1.ipynb"),
+            # "data": File(out / "clean.csv"),
+        },
+        dag=myPipelineDag,
+        kernelspec_name="python3",
+        static_analysis="disable",
+        papermill_params={"nest_asyncio": True},
+    )
+
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    # tasks to build report paga by page
+    taskReportMyThingInitiate = NotebookRunner(
+        source=loader["ReportMyThingInitiate.py"],
+        product={
+            "nb": File(out / "ReportMyThingInitiate.ipynb"),
+            # "data": File(out / "clean.csv"),
+        },
+        dag=myPipelineDag,
+        kernelspec_name="python3",
+        static_analysis="disable",
+        papermill_params={"nest_asyncio": True},
+    )
+
+    askReportMyThingAddLineGraphPage = NotebookRunner(
+        source=loader["ReportMyThingAddLineGraphPage.py"],
+        product={
+            "nb": File(out / "ReportMyThingAddLineGraphPage.ipynb"),
+            # "data": File(out / "clean.csv"),
+        },
+        dag=myPipelineDag,
+        kernelspec_name="python3",
+        static_analysis="disable",
+        papermill_params={"nest_asyncio": True},
+    )
+
+    taskReportMyThingAddTablePage = NotebookRunner(
+        source=loader["ReportMyThingAddTablePage.py"],
+        product={
+            "nb": File(out / "ReportMyThingAddTablePage.ipynb"),
+            # "data": File(out / "clean.csv"),
+        },
+        dag=myPipelineDag,
+        kernelspec_name="python3",
+        static_analysis="disable",
+        papermill_params={"nest_asyncio": True},
+    )
+
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    # tasks to upload data
+    taskUploadData = NotebookRunner(
+        source=loader["UploadData.py"],
+        product={
+            "nb": File(out / "UploadData.ipynb"),
+            # "data": File(out / "clean.csv"),
+        },
+        dag=myPipelineDag,
+        kernelspec_name="python3",
+        static_analysis="disable",
+        papermill_params={"nest_asyncio": True},
+    )
+
+    return myPipelineDag  #
