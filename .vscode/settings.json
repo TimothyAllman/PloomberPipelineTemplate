@@ -5,6 +5,7 @@
   "black-formatter.args": [
     "--line-length","10000"
   ],
+  "editor.formatOnSave":true,
   "notebook.output.scrolling": true,
   "notebook.output.textLineLimit": 30,
   "notebook.diff.ignoreOutputs": false,
