@@ -13,6 +13,7 @@ exploratory-tests/
 
 # exclude everything in thhe products folder
 products/
+output/
 
 # exclude everything in thhe reports folder
 reports/
