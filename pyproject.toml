@@ -4,14 +4,14 @@ version = "0.0.0" #in version.txt
 description = "Add your description here"
 readme = "README.md"
 authors = [
-    { name = "TimothyAllman", email = "166746823+TimothyAllman@users.noreply.github.com" }
+    { name = "TimothyAllman", email = "166746823+TimothyAllman@users.noreply.github.com" },
 ]
 requires-python = ">=3.10"
 
 dependencies = [
     #for pipeline
-    "ploomber", 
-    
+    "ploomber",
+
     #for storing/retrieving/serialising variables between tasks
     "cloudpickle",
 
@@ -22,7 +22,7 @@ dependencies = [
     "plotly",
 
     #for saving graphs as .png
-    "kaleido==0.2.0", 
+    "kaleido==0.2.0",
 
     #for powerpoint/report creation
     "python-pptx",
@@ -34,9 +34,9 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "uv", #for pacakge managment and dependency resolution
+    "uv",        #for package managment and dependency resolution
     "ipykernel", #for running ipynb files inside VsCode 
-    "pytest", #for tests
+    "pytest",    #for tests
 ]
 
 
