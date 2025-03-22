@@ -29,3 +29,27 @@ product = None
 
 # %%
 # your code here...
+
+# %%
+from pathlib import Path
+import pickle
+
+
+# %%
+THING_1 = "thing"
+
+# pickle/store stuff to use later
+Path(str(product["THING_1"])).parent.mkdir(exist_ok=True, parents=True)
+Path(str(product["THING_1"])).write_bytes(pickle.dumps(THING_1))
+# print output
+THING_1
+
+
+# %%
+THING_2 = "thingthing"
+
+# pickle/store stuff to use later
+Path(str(product["THING_2"])).parent.mkdir(exist_ok=True, parents=True)
+Path(str(product["THING_2"])).write_bytes(pickle.dumps(THING_2))
+# print output
+THING_2
