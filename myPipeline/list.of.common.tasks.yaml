@@ -42,12 +42,3 @@
       ABSOLUTE_PATH_TO_DATA_1_XLSX: products/{{MY_FOLDER}}/sharedVariables/ABSOLUTE_PATH_TO_DATA_1_XLSX.pkl
 
 
-
-
-
-# task used to create constants 
-- source: tasks/Constants.py
-  product:
-      nb: products/{{MY_FOLDER}}/notebooks/Constants.ipynb
-      CONSTANT_ONE: products/{{MY_FOLDER}}/sharedVariables/CONSTANT_ONE.pkl
-      CONSTANT_TWO: products/{{MY_FOLDER}}/sharedVariables/CONSTANT_TWO.pkl
