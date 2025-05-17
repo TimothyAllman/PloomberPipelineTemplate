@@ -63,18 +63,6 @@ def CreatePipeline(
         papermill_params={"nest_asyncio": True},
     )
 
-    taskConstantsFromFilePaths = NotebookRunner(
-        source=loader["ConstantsFromFilePaths.py"],
-        product={
-            "nb": File(outputFolderPath / myFolderName / _NOTEBOOKS_FOLDER_NAME / "ConstantsFromFilePaths.ipynb"),
-            # "data": File(out / "clean.csv"),
-        },
-        dag=myPipelineDag,
-        kernelspec_name="python3",
-        static_analysis="disable",
-        papermill_params={"nest_asyncio": True},
-    )
-
     taskConstantsFromEnvFileParams = NotebookRunner(
         source=loader["ConstantsFromEnvFileParams.py"],
         params=envParams.__dict__,
@@ -263,6 +251,28 @@ def CreatePipeline(
         source=loader["ReportMyThingAddTablePage.py"],
         product={
             "nb": File(outputFolderPath / myFolderName / _NOTEBOOKS_FOLDER_NAME / "ReportMyThingAddTablePage.ipynb"),
+            # "data": File(out / "clean.csv"),
+        },
+        dag=myPipelineDag,
+        kernelspec_name="python3",
+        static_analysis="disable",
+        papermill_params={"nest_asyncio": True},
+    )
+
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    # tasks to upload data
+    taskTurnResultIntoExcel = NotebookRunner(
+        source=loader["TurnResultIntoExcel.py"],
+        product={
+            "nb": File(outputFolderPath / myFolderName / _NOTEBOOKS_FOLDER_NAME / "TurnResultIntoExcel.ipynb"),
             # "data": File(out / "clean.csv"),
         },
         dag=myPipelineDag,
