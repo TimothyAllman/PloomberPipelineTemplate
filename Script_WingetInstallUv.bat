@@ -1,8 +1,10 @@
 :: this is a .bat file comment
-::
-::
-:: we use uv for package managment and dependency resolution 
-:: as of Mar 2025 we can install it using the the below .bat command/comand line 
-:: see https://docs.astral.sh/uv/getting-started/installation/ for more info
+:: and this is a small .bat script to invoke the xyz function in the cmd
+:: running this file will:
+:: 1.
+:: 2.
+:: 3.
+:: NB IMPORTNANT NOTE!! 
+:: see the latest docs at https://docs.astral.sh/uv/getting-started/installation/ for more info
 
 winget install --id=astral-sh.uv  -e

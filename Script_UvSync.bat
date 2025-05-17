@@ -1,7 +1,10 @@
 :: this is a .bat file comment
-:: and thsis is a 
-::
-:: in order to set the prjoect up/get all he correct packages/dependencies installed in the right places
-:: run the below command
+:: and this is a small .bat script to invoke the xyz function in the cmd
+:: running this file will:
+:: 1.
+:: 2.
+:: 3.
+:: NB IMPORTNANT NOTE!! 
+:: see the latest docs at https://docs.astral.sh/uv/reference/cli/#uv-sync for more info
 
 uv sync

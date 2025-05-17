@@ -5,6 +5,6 @@
 :: 2.
 :: 3.
 :: NB IMPORTNANT NOTE!! 
-:: see the latest docs at https://docs.ploomber.io/en/latest/api/cli.html#build-pipeline-forced for more info
+:: see the latest docs at https://docs.astral.sh/uv/reference/cli/#uv-run for more info
 
-ploomber build --force
+uv run pytest
