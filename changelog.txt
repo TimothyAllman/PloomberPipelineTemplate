@@ -1,3 +1,13 @@
+0.0.5
+May 17 2024
+- Move Constants to src module
+- Use .bat scripts instead of .ipynb  notebooks for utility commands
+
+0.0.4
+March 22 2024
+- Pass in env object into dag
+- Use Python API i.e. build pipeline in python
+
 0.0.3
 March 5 2024
 - Rename task .py scripts to follow alphabetical convention i.e. IngestXyzTask, ProcessXyzTask, QuantifyXyzTask, ReportXyzTask, UploadXyzTask, 
