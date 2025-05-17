@@ -5,6 +5,7 @@ from ploomber import DAGConfigurator, SourceLoader
 from ploomber.tasks import NotebookRunner, PythonCallable
 from ploomber.products import File
 
+from ploomberpipelinetemplate.ConstantsForFilePathsDataModule import _NOTEBOOKS_FOLDER_NAME, _OUTPUT_FOLDER_NAME, _SHARED_VARIABLES_FOLDER_NAME
 from ploomberpipelinetemplate.EnvFileDataModule import EnvFileData
 
 
@@ -14,15 +15,12 @@ def CreatePipeline(
 ):
 
     # create any top level folders
-    # we will save all output here
-    outputFolderPath = Path("myPipeline", "output")
+    outputFolderPath = Path("myPipeline", _OUTPUT_FOLDER_NAME)
     if clean_up and outputFolderPath.exists():
         shutil.rmtree(str(outputFolderPath))
     outputFolderPath.mkdir(exist_ok=True)
 
     myFolderName = envParams.MY_FOLDER
-    sharedVariablesFolderName = "sharedVariables"
-    notebooksFolderName = "notebooks"
 
     # then configure the pipeline/dag
     cfg = DAGConfigurator()
@@ -47,9 +45,9 @@ def CreatePipeline(
         # this task generates two files, the .ipynb
         # output notebook and another csv file
         product={
-            "nb": File(outputFolderPath / myFolderName / notebooksFolderName / "CommonFunctions.ipynb"),
-            "FUNC_1": File(outputFolderPath / myFolderName / sharedVariablesFolderName / "FUNC_1.pkl"),
-            "FUNC_2": File(outputFolderPath / myFolderName / sharedVariablesFolderName / "FUNC_2.pkl"),
+            "nb": File(outputFolderPath / myFolderName / _NOTEBOOKS_FOLDER_NAME / "CommonFunctions.ipynb"),
+            "FUNC_1": File(outputFolderPath / myFolderName / _SHARED_VARIABLES_FOLDER_NAME / "FUNC_1.pkl"),
+            "FUNC_2": File(outputFolderPath / myFolderName / _SHARED_VARIABLES_FOLDER_NAME / "FUNC_2.pkl"),
         },
         dag=myPipelineDag,
         # you can run any language supported by Jupyter
@@ -68,7 +66,7 @@ def CreatePipeline(
     taskConstantsFromFilePaths = NotebookRunner(
         source=loader["ConstantsFromFilePaths.py"],
         product={
-            "nb": File(outputFolderPath / myFolderName / notebooksFolderName / "ConstantsFromFilePaths.ipynb"),
+            "nb": File(outputFolderPath / myFolderName / _NOTEBOOKS_FOLDER_NAME / "ConstantsFromFilePaths.ipynb"),
             # "data": File(out / "clean.csv"),
         },
         dag=myPipelineDag,
@@ -81,9 +79,9 @@ def CreatePipeline(
         source=loader["ConstantsFromEnvFileParams.py"],
         params=envParams.__dict__,
         product={
-            "nb": File(outputFolderPath / myFolderName / notebooksFolderName / "ConstantsFromEnvFileParams.ipynb"),
-            "THING_1": File(outputFolderPath / myFolderName / sharedVariablesFolderName / "THING_1.pkl"),
-            "THING_2": File(outputFolderPath / myFolderName / sharedVariablesFolderName / "THING_2.pkl"),
+            "nb": File(outputFolderPath / myFolderName / _NOTEBOOKS_FOLDER_NAME / "ConstantsFromEnvFileParams.ipynb"),
+            "THING_1": File(outputFolderPath / myFolderName / _SHARED_VARIABLES_FOLDER_NAME / "THING_1.pkl"),
+            "THING_2": File(outputFolderPath / myFolderName / _SHARED_VARIABLES_FOLDER_NAME / "THING_2.pkl"),
         },
         dag=myPipelineDag,
         kernelspec_name="python3",
@@ -104,7 +102,7 @@ def CreatePipeline(
     taskDocumentationPdfOfFaq = NotebookRunner(
         source=loader["DocumentationPdfOfFaq.py"],
         product={
-            "nb": File(outputFolderPath / myFolderName / notebooksFolderName / "DocumentationPdfOfFaq.ipynb"),
+            "nb": File(outputFolderPath / myFolderName / _NOTEBOOKS_FOLDER_NAME / "DocumentationPdfOfFaq.ipynb"),
             # "data": File(out / "clean.csv"),
         },
         dag=myPipelineDag,
@@ -116,7 +114,7 @@ def CreatePipeline(
     taskDocumentationPdfOfStepbyStepGuide = NotebookRunner(
         source=loader["DocumentationPdfOfStepbyStepGuide.py"],
         product={
-            "nb": File(outputFolderPath / myFolderName / notebooksFolderName / "DocumentationPdfOfStepbyStepGuide.ipynb"),
+            "nb": File(outputFolderPath / myFolderName / _NOTEBOOKS_FOLDER_NAME / "DocumentationPdfOfStepbyStepGuide.ipynb"),
             # "data": File(out / "clean.csv"),
         },
         dag=myPipelineDag,
@@ -138,7 +136,7 @@ def CreatePipeline(
     taskIngestData1 = NotebookRunner(
         source=loader["IngestData1.py"],
         product={
-            "nb": File(outputFolderPath / myFolderName / notebooksFolderName / "IngestData1.ipynb"),
+            "nb": File(outputFolderPath / myFolderName / _NOTEBOOKS_FOLDER_NAME / "IngestData1.ipynb"),
             # "data": File(out / "clean.csv"),
         },
         dag=myPipelineDag,
@@ -150,7 +148,7 @@ def CreatePipeline(
     taskIngestData2 = NotebookRunner(
         source=loader["IngestData2.py"],
         product={
-            "nb": File(outputFolderPath / myFolderName / notebooksFolderName / "IngestData2.ipynb"),
+            "nb": File(outputFolderPath / myFolderName / _NOTEBOOKS_FOLDER_NAME / "IngestData2.ipynb"),
             # "data": File(out / "clean.csv"),
         },
         dag=myPipelineDag,
@@ -172,7 +170,7 @@ def CreatePipeline(
     taskProcessToDoCalc1 = NotebookRunner(
         source=loader["ProcessToDoCalc1.py"],
         product={
-            "nb": File(outputFolderPath / myFolderName / notebooksFolderName / "ProcessToDoCalc1.ipynb"),
+            "nb": File(outputFolderPath / myFolderName / _NOTEBOOKS_FOLDER_NAME / "ProcessToDoCalc1.ipynb"),
             # "data": File(out / "clean.csv"),
         },
         dag=myPipelineDag,
@@ -184,7 +182,7 @@ def CreatePipeline(
     taskProcessToDoCalc2 = NotebookRunner(
         source=loader["ProcessToDoCalc2.py"],
         product={
-            "nb": File(outputFolderPath / myFolderName / notebooksFolderName / "ProcessToDoCalc2.ipynb"),
+            "nb": File(outputFolderPath / myFolderName / _NOTEBOOKS_FOLDER_NAME / "ProcessToDoCalc2.ipynb"),
             # "data": File(out / "clean.csv"),
         },
         dag=myPipelineDag,
@@ -206,7 +204,7 @@ def CreatePipeline(
     taskQuantifyAndSaveLineGraph = NotebookRunner(
         source=loader["QuantifyAndSaveLineGraph.py"],
         product={
-            "nb": File(outputFolderPath / myFolderName / notebooksFolderName / "QuantifyAndSaveLineGraph.ipynb"),
+            "nb": File(outputFolderPath / myFolderName / _NOTEBOOKS_FOLDER_NAME / "QuantifyAndSaveLineGraph.ipynb"),
             # "data": File(out / "clean.csv"),
         },
         dag=myPipelineDag,
@@ -218,7 +216,7 @@ def CreatePipeline(
     taskQuantifyAndSaveMyTable1 = NotebookRunner(
         source=loader["QuantifyAndSaveMyTable1.py"],
         product={
-            "nb": File(outputFolderPath / myFolderName / notebooksFolderName / "QuantifyAndSaveMyTable1.ipynb"),
+            "nb": File(outputFolderPath / myFolderName / _NOTEBOOKS_FOLDER_NAME / "QuantifyAndSaveMyTable1.ipynb"),
             # "data": File(out / "clean.csv"),
         },
         dag=myPipelineDag,
@@ -240,7 +238,7 @@ def CreatePipeline(
     taskReportMyThingInitiate = NotebookRunner(
         source=loader["ReportMyThingInitiate.py"],
         product={
-            "nb": File(outputFolderPath / myFolderName / notebooksFolderName / "ReportMyThingInitiate.ipynb"),
+            "nb": File(outputFolderPath / myFolderName / _NOTEBOOKS_FOLDER_NAME / "ReportMyThingInitiate.ipynb"),
             # "data": File(out / "clean.csv"),
         },
         dag=myPipelineDag,
@@ -252,7 +250,7 @@ def CreatePipeline(
     askReportMyThingAddLineGraphPage = NotebookRunner(
         source=loader["ReportMyThingAddLineGraphPage.py"],
         product={
-            "nb": File(outputFolderPath / myFolderName / notebooksFolderName / "ReportMyThingAddLineGraphPage.ipynb"),
+            "nb": File(outputFolderPath / myFolderName / _NOTEBOOKS_FOLDER_NAME / "ReportMyThingAddLineGraphPage.ipynb"),
             # "data": File(out / "clean.csv"),
         },
         dag=myPipelineDag,
@@ -264,7 +262,7 @@ def CreatePipeline(
     taskReportMyThingAddTablePage = NotebookRunner(
         source=loader["ReportMyThingAddTablePage.py"],
         product={
-            "nb": File(outputFolderPath / myFolderName / notebooksFolderName / "ReportMyThingAddTablePage.ipynb"),
+            "nb": File(outputFolderPath / myFolderName / _NOTEBOOKS_FOLDER_NAME / "ReportMyThingAddTablePage.ipynb"),
             # "data": File(out / "clean.csv"),
         },
         dag=myPipelineDag,
@@ -286,7 +284,7 @@ def CreatePipeline(
     taskUploadData = NotebookRunner(
         source=loader["UploadData.py"],
         product={
-            "nb": File(outputFolderPath / myFolderName / notebooksFolderName / "UploadData.ipynb"),
+            "nb": File(outputFolderPath / myFolderName / _NOTEBOOKS_FOLDER_NAME / "UploadData.ipynb"),
             # "data": File(out / "clean.csv"),
         },
         dag=myPipelineDag,
