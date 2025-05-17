@@ -11,4 +11,6 @@ dag = CreatePipeline(
     envParams=myEnvDictionary,
 )
 
-dag.build()
+dag.build(
+    force=True,
+)
