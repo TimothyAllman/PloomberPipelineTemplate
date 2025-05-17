@@ -12,5 +12,6 @@ dag = CreatePipeline(
 )
 
 dag.plot(
+    output="myPipeline/DiagramOfProcessFlow.html",
     backend="mermaid",
 )
