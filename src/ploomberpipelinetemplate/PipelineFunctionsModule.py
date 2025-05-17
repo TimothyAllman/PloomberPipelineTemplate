@@ -8,7 +8,10 @@ from ploomber.products import File
 from ploomberpipelinetemplate.EnvFileDataModule import EnvFileData
 
 
-def CreatePipeline(envParams: EnvFileData, clean_up=False):
+def CreatePipeline(
+    envParams: EnvFileData,
+    clean_up=False,
+):
 
     # create any top level folders
     # we will save all output here
